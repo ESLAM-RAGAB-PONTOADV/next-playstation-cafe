@@ -819,3 +819,124 @@ svg{fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-l
     font-size:1.55rem;
   }
 }
+
+
+/* =========================================================
+   V5 — Mobile dock colors + simple owner chooser
+========================================================= */
+
+/* Keep the mobile dock exactly dark/orange — override mobile browser button defaults */
+@media (max-width:650px){
+  .mobile-dock{
+    background:rgba(13,13,15,.96)!important;
+    border:1px solid rgba(255,255,255,.13)!important;
+  }
+
+  .mobile-dock > button.dock-action{
+    appearance:none!important;
+    -webkit-appearance:none!important;
+    width:100%!important;
+    height:100%!important;
+    margin:0!important;
+    padding:0!important;
+    border:0!important;
+    border-radius:0!important;
+    outline:0!important;
+    background:#0d0d0f!important;
+    color:#d7d2cc!important;
+    box-shadow:none!important;
+    opacity:1!important;
+  }
+
+  .mobile-dock > button.dock-action:focus,
+  .mobile-dock > button.dock-action:active{
+    background:#0d0d0f!important;
+    color:#d7d2cc!important;
+  }
+
+  .mobile-dock > button.dock-action svg{
+    width:19px!important;
+    height:19px!important;
+    color:#d7d2cc!important;
+    stroke:currentColor!important;
+    fill:none!important;
+  }
+
+  .mobile-dock > button.dock-action span{
+    color:#d7d2cc!important;
+  }
+
+  .mobile-dock > a.dock-book{
+    background:var(--orange)!important;
+    color:#070707!important;
+  }
+
+  .mobile-dock > a.dock-book svg{
+    color:#070707!important;
+    stroke:currentColor!important;
+    fill:none!important;
+  }
+}
+
+/* Simple two-choice sheet: no heading or explanatory text */
+.contact-choice-modal{
+  align-items:end;
+  padding:0 12px max(86px,calc(env(safe-area-inset-bottom) + 82px));
+}
+
+.contact-choice-card{
+  width:min(430px,100%);
+  padding:48px 14px 14px;
+  border-radius:22px;
+  background:#101012;
+  border:1px solid rgba(255,157,19,.28);
+}
+
+.contact-choice-close{
+  top:10px;
+  left:10px;
+  width:34px;
+  height:34px;
+  font-size:1.35rem;
+  background:#08080a;
+  color:#fff;
+}
+
+.contact-choice-list{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.contact-choice-person{
+  min-height:66px;
+  justify-content:center;
+  padding:12px;
+  border:1px solid rgba(255,157,19,.28);
+  border-radius:15px;
+  background:#17171a;
+  color:#fff;
+  text-align:center;
+}
+
+.contact-choice-person span{
+  font-family:var(--display-font);
+  font-size:1.05rem;
+  font-weight:800;
+  line-height:1.2;
+}
+
+.contact-choice-person:hover,
+.contact-choice-person:focus{
+  background:var(--orange);
+  border-color:var(--orange);
+  color:#070707;
+  outline:none;
+}
+
+@media (min-width:651px){
+  .contact-choice-modal{
+    align-items:center;
+    padding:18px;
+  }
+}

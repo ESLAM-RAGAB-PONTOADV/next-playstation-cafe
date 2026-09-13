@@ -177,23 +177,15 @@
 
   // Mobile contact chooser
   const contactChoiceModal = $("#contactChoiceModal");
-  const contactChoiceTitle = $("#contactChoiceTitle");
-  const contactChoiceText = $("#contactChoiceText");
   const choiceAhmed = $("#choiceAhmed");
   const choiceMohamed = $("#choiceMohamed");
 
   function openContactChoice(type) {
     const isWhatsApp = type === "whatsapp";
 
-    contactChoiceTitle.textContent = isWhatsApp
-      ? "اختار هتبعت واتساب لمين"
-      : "اختار هتتصل بمين";
-
-    contactChoiceText.textContent = isWhatsApp
-      ? "اختار أحمد علاء أو محمد علاء علشان نفتحلك محادثة واتساب مباشرة."
-      : "اختار أحمد علاء أو محمد علاء علشان يبدأ الاتصال.";
-
     if (isWhatsApp) {
+      choiceAhmed.setAttribute("aria-label", "واتساب أحمد علاء");
+      choiceMohamed.setAttribute("aria-label", "واتساب محمد علاء");
       choiceAhmed.href = "https://wa.me/201026275966";
       choiceMohamed.href = "https://wa.me/201110145386";
       choiceAhmed.target = "_blank";
@@ -201,6 +193,8 @@
       choiceAhmed.rel = "noopener";
       choiceMohamed.rel = "noopener";
     } else {
+      choiceAhmed.setAttribute("aria-label", "اتصال بأحمد علاء");
+      choiceMohamed.setAttribute("aria-label", "اتصال بمحمد علاء");
       choiceAhmed.href = "tel:+201026275966";
       choiceMohamed.href = "tel:+201110145386";
       choiceAhmed.removeAttribute("target");
