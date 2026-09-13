@@ -174,4 +174,69 @@
   }, { rootMargin: "-30% 0px -60% 0px", threshold: 0.01 });
 
   sections.forEach(section => observer.observe(section));
+
+  // Mobile contact chooser
+  const contactChoiceModal = $("#contactChoiceModal");
+  const contactChoiceTitle = $("#contactChoiceTitle");
+  const contactChoiceText = $("#contactChoiceText");
+  const choiceAhmed = $("#choiceAhmed");
+  const choiceMohamed = $("#choiceMohamed");
+
+  function openContactChoice(type) {
+    const isWhatsApp = type === "whatsapp";
+
+    contactChoiceTitle.textContent = isWhatsApp
+      ? "اختار هتبعت واتساب لمين"
+      : "اختار هتتصل بمين";
+
+    contactChoiceText.textContent = isWhatsApp
+      ? "اختار أحمد علاء أو محمد علاء علشان نفتحلك محادثة واتساب مباشرة."
+      : "اختار أحمد علاء أو محمد علاء علشان يبدأ الاتصال.";
+
+    if (isWhatsApp) {
+      choiceAhmed.href = "https://wa.me/201026275966";
+      choiceMohamed.href = "https://wa.me/201110145386";
+      choiceAhmed.target = "_blank";
+      choiceMohamed.target = "_blank";
+      choiceAhmed.rel = "noopener";
+      choiceMohamed.rel = "noopener";
+    } else {
+      choiceAhmed.href = "tel:+201026275966";
+      choiceMohamed.href = "tel:+201110145386";
+      choiceAhmed.removeAttribute("target");
+      choiceMohamed.removeAttribute("target");
+      choiceAhmed.removeAttribute("rel");
+      choiceMohamed.removeAttribute("rel");
+    }
+
+    contactChoiceModal.classList.add("show");
+    contactChoiceModal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+    $(".contact-choice-close").focus();
+  }
+
+  function closeContactChoice() {
+    contactChoiceModal.classList.remove("show");
+    contactChoiceModal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+  }
+
+  $$("[data-contact-choice]").forEach(button => {
+    button.addEventListener("click", () => openContactChoice(button.dataset.contactChoice));
+  });
+
+  $$("[data-close-contact-choice]").forEach(el => {
+    el.addEventListener("click", closeContactChoice);
+  });
+
+  [choiceAhmed, choiceMohamed].forEach(link => {
+    link.addEventListener("click", () => setTimeout(closeContactChoice, 120));
+  });
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && contactChoiceModal.classList.contains("show")) {
+      closeContactChoice();
+    }
+  });
+
 })();
